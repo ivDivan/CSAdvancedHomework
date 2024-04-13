@@ -15,7 +15,7 @@ namespace Class04Homework.Task02.Models
 
         public static void PrintCollection<T>(IEnumerable<T> collection)
         {
-            foreach (var item in collection)
+            foreach (T item in collection)
             {
                 Console.Write(item + " ");
             }
