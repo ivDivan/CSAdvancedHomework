@@ -2,6 +2,8 @@
 
 //=========Task 01=========
 
+using Microsoft.VisualBasic;
+
 string appPath = @"..\..\..\";
 string folderPath = appPath + @"Files\";
 string filePath = folderPath + @"names.txt";
@@ -74,7 +76,8 @@ List<string> UserInput()
 
 void Write(List<string> text, string path)
 {
-    foreach (string s in text)
+    var distinctText = text.Distinct(StringComparer.OrdinalIgnoreCase).ToList();
+    foreach (string s in distinctText)
     {
         using (StreamWriter sw = new StreamWriter(path, true))
         {
@@ -106,12 +109,13 @@ foreach (char letter in alphabet)
         string line;
         while ((line = sr.ReadLine()) != null)
         {
-            if (line.StartsWith(letter.ToString().ToUpper()))
+            if (line.StartsWith(letter.ToString(), StringComparison.OrdinalIgnoreCase))
             {
                 charNames.Add(line);
             }
         }
     }
+    
 
     Write(charNames, charFilePath);
 
